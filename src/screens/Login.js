@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { Form, Button } from 'semantic-ui-react'
 
 import ActionCreator from '../redux/actionCreators'
 
@@ -40,14 +41,23 @@ class Login extends Component {
 
     return (
       <div>
-        <h1>Login {JSON.stringify(this.props)}</h1>
-        <input type="text" value={this.state.form.email} onChange={this.handleChange('email')} />
-        <input type="password" value={this.state.form.passwd} onChange={this.handleChange('passwd')} />
-        <button onClick={this.handleLogin}>Entrar</button>
-        {
-          this.props.auth.error &&
-          <p>Credenciais inválidas!</p>
-        }
+        <h1>Entrar</h1>
+        <Form>
+          <Form.Field>
+            <label>E-mail</label>
+            <input type="text" value={this.state.form.email} onChange={this.handleChange('email')} />
+          </Form.Field>
+          <Form.Field>
+            <label>Senha</label>
+            <input type="password" value={this.state.form.passwd} onChange={this.handleChange('passwd')} />
+          </Form.Field>
+          
+          <Button onClick={this.handleLogin}>Entrar</Button>
+          {
+            this.props.auth.error &&
+            <p>Credenciais inválidas!</p>
+          }
+        </Form>
       </div>
     )
   }
