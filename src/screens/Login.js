@@ -5,6 +5,8 @@ import { Form, Button } from 'semantic-ui-react'
 
 import ActionCreator from '../redux/actionCreators'
 
+import Header from '../Header'
+
 class Login extends Component {
   
   state = {
@@ -41,6 +43,7 @@ class Login extends Component {
 
     return (
       <div>
+        <Header />
         <h1>Entrar</h1>
         <Form>
           <Form.Field>

@@ -2,7 +2,7 @@ import { takeLatest, all, put } from 'redux-saga/effects'
 
 import ActionCreators, { Types } from '../actionCreators'
 import { getRuns, createRun } from './runs'
-import { login, auth, destroyAuth } from './auth'
+import { login, auth, destroyAuth, updateProfile } from './auth'
 
 export default function* rootSaga () {
   yield all([
@@ -11,6 +11,7 @@ export default function* rootSaga () {
     takeLatest(Types.GET_RUNS_REQUEST, getRuns),
     takeLatest(Types.CREATE_RUN_REQUEST, createRun),
     takeLatest(Types.DESTROY_AUTH_REQUEST, destroyAuth),
+    takeLatest(Types.UPDATE_PROFILE_REQUEST, updateProfile),
     put(ActionCreators.authRequest()),
   ])
 }

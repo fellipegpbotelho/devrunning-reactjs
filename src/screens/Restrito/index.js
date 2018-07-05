@@ -6,8 +6,14 @@ import Header from './elements/Header'
 
 import Home from './Home'
 import Runs from './Runs'
+import MyAccount from './MyAccount';
+import ChangePass from './ChangePass';
 
 const Restrito = props => {
+
+  if (props.auth.isSigningIn) {
+    return <p>Loading...</p>
+  }
 
   if (!props.auth.isAuth) {
     return <Redirect to="/login" />
@@ -18,6 +24,8 @@ const Restrito = props => {
       <Header />
       <Route path={`${props.match.path}/`} component={Home} exact />
       <Route path={`${props.match.path}/runs`} component={Runs} />
+      <Route path={`${props.match.path}/my-account`} component={MyAccount} />
+      <Route path={`${props.match.path}/change-pass`} component={ChangePass} />
     </div>
   )
 }

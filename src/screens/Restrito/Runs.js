@@ -14,13 +14,13 @@ class Runs extends Component {
     this.props.load()
   }
 
-  renderRun (run) {
+  renderRun = (run) => {
     return (
       <Table.Row>
         <Table.Cell>{run.friendly_name}</Table.Cell>
         <Table.Cell><Duration duration={run.duration} /></Table.Cell>
-        <Table.Cell><Distance distance={run.distance} metric={"miles"} /></Table.Cell>
-        <Table.Cell><DateString date={run.created} timezone={"America/Sao_Paulo"} /></Table.Cell>
+        <Table.Cell><Distance distance={run.distance} metric={this.props.auth.user.unit} /></Table.Cell>
+        <Table.Cell><DateString date={run.created} timezone={this.props.auth.user.timezone} /></Table.Cell>
       </Table.Row>
     )
   }
@@ -58,7 +58,8 @@ class Runs extends Component {
 
 const mapStateToProps = state => {
   return {
-    runs: state.runs
+    runs: state.runs,
+    auth: state.auth,
   }
 }
 

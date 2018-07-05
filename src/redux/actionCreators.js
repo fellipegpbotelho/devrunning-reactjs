@@ -22,6 +22,11 @@ export const {
 
   destroyAuthRequest: null,
   destroyAuthSuccess: null,
+
+  updateProfileReset: null,
+  updateProfileRequest: ["user"],
+  updateProfileSuccess: ["user"],
+  updateProfileFailure: ["error"],
 })
 
 export default Creators
