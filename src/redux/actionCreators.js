@@ -27,6 +27,11 @@ export const {
   updateProfileRequest: ["user"],
   updateProfileSuccess: ["user"],
   updateProfileFailure: ["error"],
+
+  createProfileReset: null,
+  createProfileRequest: ["user"],
+  createProfileSuccess: ["user"],
+  createProfileFailure: ["error"],
 })
 
 export default Creators

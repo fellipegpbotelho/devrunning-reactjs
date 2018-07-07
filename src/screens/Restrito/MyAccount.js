@@ -43,20 +43,26 @@ class MyAccount extends Component {
         { 
           !this.props.auth.saved &&  
             <Form>
-              <select value={this.state.unit} onChange={this.handleChange("unit")}>
-                <option value="metric">Métrico (Km)</option>
-                <option value="imperial">Imperial (mi)</option>
-              </select>
-              <select value={this.state.timezone} onChange={this.handleChange("timezone")}>
-                {
-                  Object
-                    .keys(timezones.zones)
-                    .map(tz => {
-                      return <option key={tz} value={tz}>{tz}</option>
-                    })
-                }
-              </select>
-              <Button onClick={this.handleSave}>Salvar</Button>
+              <Form.Field>
+                <label>Unidade:</label>
+                <select value={this.state.unit} onChange={this.handleChange("unit")}>
+                  <option value="metric">Métrico (Km)</option>
+                  <option value="imperial">Imperial (mi)</option>
+                </select>
+              </Form.Field>
+              <Form.Field>
+                <label>Timezone:</label>
+                <select value={this.state.timezone} onChange={this.handleChange("timezone")}>
+                  {
+                    Object
+                      .keys(timezones.zones)
+                      .map(tz => {
+                        return <option key={tz} value={tz}>{tz}</option>
+                      })
+                  }
+                </select>
+              </Form.Field>
+              <Button onClick={this.handleSave}>Salvar alterações </Button>
             </Form>
         }
       </div>

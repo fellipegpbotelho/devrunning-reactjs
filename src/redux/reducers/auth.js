@@ -63,8 +63,8 @@ export const authFailure = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     isSigningIn: false,
-    error: true, 
-    errorMessage: action.error,
+    //error: true, 
+    //errorMessage: action.error,
   }
 }
 
@@ -120,6 +120,49 @@ export const updateProfileReset = (state = INITIAL_STATE, action) => {
   }
 }
 
+export const createProfileRequest = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    isSaving: true,
+    error: false,
+    errorMessage: '',
+    saved: false,
+  }
+}
+
+export const createProfileSuccess = (state = INITIAL_STATE, action) => {
+  const newUser = {
+    ...state.user,
+  }
+  Object.keys(action.user).forEach(key => {
+    newUser[key] = action.user[key]
+  })
+  return {
+    ...state,
+    isSaving: false,
+    user: newUser,
+    saved: true,
+  }
+}
+
+export const createProfileFailure = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    isSaving: false,
+    error: true,
+    errorMessage: action.error,
+    saved: false,
+  }
+}
+
+export const createProfileReset = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    isSaving: false,
+    saved: false,
+  }
+}
+
 export const HANDLERS = {
   [Types.SIGN_IN_REQUEST]: signInRequest,
   [Types.SIGN_IN_SUCCESS]: signInSuccess,
@@ -132,6 +175,10 @@ export const HANDLERS = {
   [Types.UPDATE_PROFILE_SUCCESS]: updateProfileSuccess,
   [Types.UPDATE_PROFILE_FAILURE]: updateProfileFailure,
   [Types.UPDATE_PROFILE_RESET]: updateProfileReset,
+  [Types.CREATE_PROFILE_REQUEST]: createProfileRequest,
+  [Types.CREATE_PROFILE_SUCCESS]: createProfileSuccess,
+  [Types.CREATE_PROFILE_FAILURE]: createProfileFailure,
+  [Types.CREATE_PROFILE_RESET]: createProfileReset,
 }
 
 export default createReducer(INITIAL_STATE, HANDLERS)
