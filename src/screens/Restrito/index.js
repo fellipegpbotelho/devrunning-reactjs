@@ -6,8 +6,9 @@ import Header from './elements/Header'
 
 import Home from './Home'
 import Runs from './Runs'
-import MyAccount from './MyAccount';
-import ChangePass from './ChangePass';
+import MyAccount from './MyAccount'
+import ChangePass from './ChangePass'
+import CreateRun from './CreateRun'
 
 const Restrito = props => {
 
@@ -26,6 +27,7 @@ const Restrito = props => {
       <Route path={`${props.match.path}/runs`} component={Runs} />
       <Route path={`${props.match.path}/my-account`} component={MyAccount} />
       <Route path={`${props.match.path}/change-pass`} component={ChangePass} />
+      <Route path={`${props.match.path}/create-run`} component={CreateRun} />
     </div>
   )
 }

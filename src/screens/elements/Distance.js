@@ -5,7 +5,7 @@ const Distance = ({ distance, metric }) => {
   let distanceString = ""
 
   if (metric === "metric") {
-    distanceString = distance + " km"
+    distanceString = distance.toFixed(2) + " km"    
   } else {
     const distanceMi = distance * 0.621371
     distanceString = distanceMi.toFixed(2) + " mi"
