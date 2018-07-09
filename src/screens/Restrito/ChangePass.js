@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Segment, Form } from 'semantic-ui-react'
-import timezones from 'moment-timezone/data/meta/latest.json'
 
 import ActionCreators from '../../redux/actionCreators'
 

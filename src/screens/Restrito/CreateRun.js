@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Segment, Form } from 'semantic-ui-react'
+import { Redirect } from 'react-router-dom'
 import moment from 'moment'
 import momentTz from 'moment-timezone'
 import InputMoment from 'input-moment'
@@ -18,6 +19,10 @@ class CreateRun extends Component {
     error: "",
   }
 
+  componentDidMount () {
+    this.props.reset()
+  }
+
   handleChange = fieldname => event => {
     this.setState({
       [fieldname]: event.target.value,
@@ -28,7 +33,7 @@ class CreateRun extends Component {
     const originalDate = momentTz.tz(this.state.created, this.props.auth.user.timezone)
     const formatedDate = originalDate.clone().utc().format("YYYY-MM-DD H:mm:ss")
     const unit = this.props.auth.user.unit  
-    const { friendly_name, duration, distance, created } = this.state
+    const { friendly_name, duration, distance } = this.state
     this.props.create({ 
       friendly_name, 
       duration, 
@@ -38,11 +43,17 @@ class CreateRun extends Component {
   }
 
   render () {
+
+    if (this.props.runs.saved) {
+      return <Redirect to="/restrito/runs" />
+    }
+
     return (
       <div>
         <h1>Nova corrida</h1>
+        { this.props.runs.saved && <Segment color="green">Corrida criada com sucesso</Segment> }
         { 
-          !this.props.auth.saved &&  
+          !this.props.runs.saved &&  
             <Form>
               <Form.Field>
                 <label>Nome: </label>
@@ -78,13 +89,15 @@ class CreateRun extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    runs: state.runs,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     create: (run) => dispatch(ActionCreators.createRunRequest(run)),
+    reset: () => dispatch(ActionCreators.createRunReset()),
   }
 }
 

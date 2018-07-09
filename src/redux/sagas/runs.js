@@ -24,5 +24,17 @@ export function* createRun (action) {
     }
   })
   
-  // yield put(ActionCreators.getRunsSuccess(runs.data))
+  yield put(ActionCreators.createRunSuccess(runs.data))
+}
+
+export function* removeRun (action) {
+
+  const token = localStorage.getItem("token")
+  yield axios.delete(`http://localhost:3001/runs/${action.id}`, {
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  })
+  
+  yield put(ActionCreators.removeRunSuccess(action.id))
 }
